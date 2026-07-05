@@ -1,0 +1,2054 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<!-- Evita que o navegador guarde uma versão antiga em cache. Sem isso, o
+     colaborador pode continuar vendo o formulário desatualizado mesmo
+     depois de você subir uma nova versão no GitHub. -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulário Retorno de Atividade</title>
+<style>
+  :root {
+    --navy:    #0F2544;
+    --blue:    #1A3F72;
+    --accent:  #E8A020;
+    --steel:   #4A6587;
+    --mist:    #EEF2F7;
+    --white:   #FFFFFF;
+    --border:  #C8D6E5;
+    --text:    #1C2B3A;
+    --sub:     #5A7592;
+    --danger:  #C0392B;
+    --success: #1A7A4A;
+    --sans:    'Inter', sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--sans), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: linear-gradient(135deg, #0d2a59, #091f42);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .form-header {
+    background: linear-gradient(135deg, var(--navy), #0a1f35);
+    padding: 32px 20px;
+    position: relative;
+    border-bottom: 3px solid var(--accent);
+  }
+
+  .header-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(232,160,32,0.2);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+
+  .form-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+
+  .form-subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 400;
+  }
+
+  /* ── HERO BANNER ── */
+  .hero-banner {
+    max-width: 1000px;
+    margin: -15px auto 24px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .hero-illustration {
+    flex: 0 0 auto;
+    width: 72px;
+    height: 72px;
+    filter: drop-shadow(0 6px 14px rgba(0,0,0,0.35));
+  }
+
+  .hero-text {
+    min-width: 0;
+  }
+
+  .hero-title {
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .hero-desc {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.4;
+  }
+
+  /* ── FORM BODY ── */
+  .form-body {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(15,37,68,0.15);
+    border-left: 5px solid var(--accent);
+  }
+
+  .section-header {
+    background: linear-gradient(135deg, var(--navy), #152d5a);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-num {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--accent);
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    min-width: 32px;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .section-fields {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* ── FIELD ── */
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .required-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--danger);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  input[type="number"],
+  textarea,
+  select {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text);
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 11px 12px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    width: 100%;
+  }
+
+  input[type="text"]:focus,
+  input[type="date"]:focus,
+  input[type="time"]:focus,
+  input[type="number"]:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(26,63,114,0.12);
+  }
+
+  textarea {
+    min-height: 90px;
+    resize: vertical;
+  }
+
+  /* ── OPTIONS ── */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 20px;
+  }
+
+  .options.inline {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    padding-left: 0;
+  }
+
+  .opt-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text);
+    padding: 8px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    transition: border-color 0.15s, background 0.15s;
+    user-select: none;
+  }
+
+  .opt-item:hover {
+    border-color: var(--blue);
+    background: var(--mist);
+  }
+
+  .opt-item input[type="radio"],
+  .opt-item input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--blue);
+    flex-shrink: 0;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  /* ── DIVIDER ── */
+  .field-divider {
+    height: 1px;
+    background: var(--mist);
+    border: none;
+    margin: 6px 0;
+  }
+
+  /* ── UPLOAD AREA ── */
+  #upload-area {
+    border: 2px dashed var(--border);
+    border-radius: 8px;
+    padding: 24px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    background: rgba(238,242,247,0.4);
+  }
+
+  #upload-area:hover {
+    border-color: var(--blue);
+    background: var(--mist);
+  }
+
+  .upload-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .upload-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .upload-hint {
+    font-size: 11px;
+    color: var(--sub);
+    margin-top: 4px;
+  }
+
+  #file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .file-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--mist);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .file-ext {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    background: var(--navy);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .file-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text);
+  }
+
+  .file-size {
+    color: var(--sub);
+    flex-shrink: 0;
+  }
+
+  .file-remove {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--danger);
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  /* ── IMAGE PREVIEWS ── */
+  #image-preview-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .img-preview-item {
+    position: relative;
+    width: 110px;
+  }
+
+  .img-preview-item img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1.5px solid var(--border);
+    display: block;
+  }
+
+  .img-preview-item .img-name {
+    font-size: 9px;
+    color: var(--sub);
+    margin-top: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .img-preview-item .img-remove {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--danger);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── SUBMIT ── */
+  .submit-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .btn-submit, .btn-pdf {
+    flex: 1;
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    padding: 15px 20px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    position: relative;
+  }
+
+  .btn-submit::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 10px 0 0 10px;
+  }
+
+  .btn-submit:hover { background: var(--blue); }
+
+  .btn-pdf {
+    background: var(--steel);
+  }
+
+  .btn-pdf:hover { background: var(--blue); }
+
+  .btn-submit:active, .btn-pdf:active {
+    transform: scale(0.99);
+  }
+
+  /* ── FOOTER ── */
+  .form-footer {
+    max-width: 1000px;
+    margin: 12px auto 0;
+    padding: 0 20px 40px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--sub);
+  }
+
+  /* ── CHAMADOS WEEK PANEL ── */
+  .chamados-week-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 8px;
+    background: var(--mist);
+  }
+
+  .chamados-week-panel::-webkit-scrollbar {
+    width: 5px;
+  }
+  .chamados-week-panel::-webkit-scrollbar-track {
+    background: var(--mist);
+    border-radius: 4px;
+  }
+  .chamados-week-panel::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+  }
+
+  .chamado-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px 12px;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    user-select: none;
+  }
+
+  .chamado-item:hover {
+    border-color: var(--accent);
+    background: rgba(232,160,32,0.04);
+    box-shadow: 0 2px 6px rgba(15,37,68,0.08);
+  }
+
+  .chamado-item.selected {
+    border-color: var(--blue);
+    background: rgba(26,63,114,0.06);
+    box-shadow: 0 0 0 3px rgba(26,63,114,0.10);
+  }
+
+  .chamado-num {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 0.5px;
+  }
+
+  .chamado-desc {
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .chamado-hint {
+    font-size: 11px;
+    color: var(--sub);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* ── PDF ATTACHMENT SECTION ── */
+  #pdf-attachment-section {
+    display: none;
+  }
+
+  .anexo-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .anexo-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .anexo-item {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px;
+    page-break-inside: avoid;
+  }
+
+  .anexo-item img {
+    max-width: 100%;
+    max-height: 380px;
+    display: block;
+    margin: 0 auto 6px;
+    border-radius: 4px;
+  }
+
+  .anexo-item .anexo-caption {
+    font-size: 10px;
+    color: var(--sub);
+    text-align: center;
+  }
+
+  @media print {
+    body { background: #fff !important; }
+    .submit-wrap, .form-footer, .btn-pdf, #upload-area { display: none !important; }
+    .section { box-shadow: none !important; border: 1px solid var(--border) !important; break-inside: avoid; }
+    .form-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    input, textarea, select { border: 1px solid var(--border) !important; }
+    #image-preview-list { display: none !important; }
+    #pdf-attachment-section { display: block !important; page-break-before: always; }
+    @page { margin: 15mm 12mm; }
+  }
+
+  @media (max-width: 600px) {
+    .form-header { padding: 20px 16px; }
+    .form-title { font-size: 20px; }
+    .field-row { grid-template-columns: 1fr; }
+    .options.inline { flex-direction: column; }
+    .hero-banner { padding: 14px 16px; gap: 14px; }
+    .hero-illustration { width: 56px; height: 56px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- AVISO: aparece somente quando o formulário NÃO está num navegador real -->
+<div id="aviso-whatsapp" style="display:none;background:#b71c1c;color:#fff;font-size:14px;font-weight:bold;padding:14px 16px;text-align:center;position:sticky;top:0;z-index:9999;line-height:1.5">
+  ⚠️ Abra este formulário no <strong>Chrome</strong> ou <strong>Safari</strong> — não funciona dentro do WhatsApp ou e-mail.<br>
+  <span style="font-weight:normal;font-size:13px">Toque e segure o arquivo → "Abrir com" → Chrome/Safari</span>
+</div>
+<script>
+(function(){
+  // Detecta se está rodando dentro do WebView do WhatsApp, Gmail ou outro app
+  var ua = navigator.userAgent || '';
+  var isWebView = /FBAN|FBAV|Instagram|WhatsApp|GSA|MicroMessenger/.test(ua);
+  // Também testa se localStorage está bloqueado (sinal de WebView restrito)
+  var storageOk = true;
+  try { localStorage.setItem('_t','1'); localStorage.removeItem('_t'); } catch(e){ storageOk = false; }
+  if(isWebView || !storageOk){
+    document.getElementById('aviso-whatsapp').style.display = 'block';
+  }
+})();
+</script>
+
+<div class="form-header">
+  <div class="header-inner">
+    <div class="header-badge">Retorno de Atividade</div>
+    <h1 class="form-title">Formulário Retorno de Atividade</h1>
+    <p class="form-subtitle">Formulário padrão para retorno de Execução de Ordem/Chamado com feedback e evidências.</p>
+  </div>
+</div>
+
+<div class="hero-banner">
+  <svg class="hero-illustration" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="28" y="16" width="64" height="84" rx="8" fill="#ffffff" opacity="0.95"></rect>
+    <rect x="44" y="10" width="32" height="14" rx="5" fill="var(--accent)"></rect>
+    <rect x="38" y="36" width="44" height="5" rx="2.5" fill="var(--navy)" opacity="0.85"></rect>
+    <rect x="38" y="50" width="36" height="5" rx="2.5" fill="var(--navy)" opacity="0.45"></rect>
+    <rect x="38" y="62" width="40" height="5" rx="2.5" fill="var(--navy)" opacity="0.45"></rect>
+    <rect x="38" y="74" width="28" height="5" rx="2.5" fill="var(--navy)" opacity="0.45"></rect>
+    <circle cx="86" cy="84" r="20" fill="var(--accent)"></circle>
+    <path d="M79 84l4.5 4.5L94 78" stroke="#0F2544" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+  </svg>
+  <div class="hero-text">
+    <div class="hero-title">Registro Diário de Obra</div>
+    <div class="hero-desc">Preencha as seções abaixo para registrar o retorno da atividade executada.</div>
+  </div>
+</div>
+
+<form class="form-body" onsubmit="return false;">
+
+  <!-- SEÇÃO 1: Identificação -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">S01</span>
+      <span class="section-title">Identificação do Chamado</span>
+    </div>
+    <div class="section-fields">
+      <div class="field">
+        <label>
+          Número do Chamado
+          <span class="required-dot"></span>
+        </label>
+        <input type="text" class="field-input" id="f_chamado" placeholder="Ex: 2026061010000171" maxlength="20">
+      </div>
+
+      <hr class="field-divider">
+
+      <div class="field">
+        <label>Tag do Equipamento <span class="required-dot"></span></label>
+        <input type="text" class="field-input" id="f_tag" placeholder="Ex: 008-PNC-005">
+      </div>
+
+      <hr class="field-divider">
+
+      <div class="field-row">
+        <div class="field">
+          <label>
+            Data de Execução
+            <span class="required-dot"></span>
+          </label>
+          <input type="date" class="field-input" id="f_data">
+        </div>
+        <div class="field">
+          <label>
+            Hora de Início
+            <span class="required-dot"></span>
+          </label>
+          <input type="time" class="field-input" id="f_horario_inicio">
+        </div>
+        <div class="field">
+          <label>
+            Hora de Fim
+            <span class="required-dot"></span>
+          </label>
+          <input type="time" class="field-input" id="f_horario_fim">
+        </div>
+      </div>
+
+      <hr class="field-divider">
+
+      <div class="field">
+        <label>
+          Equipe de Execução
+          <span class="required-dot"></span>
+        </label>
+        <input type="text" class="field-input" id="f_equipe" placeholder="Nome / Chapa">
+      </div>
+
+      <hr class="field-divider">
+
+      <div class="field">
+        <label>Chamados da Semana — Clique para selecionar</label>
+        <div id="chamados-contador" style="font-size:0.82em;color:#5a7592;margin-bottom:8px;font-weight:600;display:none">
+          🗂️ <span id="chamados-contador-num">0</span> chamado(s) selecionado(s)
+        </div>
+        <div class="chamados-week-panel" id="chamados-semana">
+          <div class="chamado-item" onclick="selecionarChamado('2026070110000043', this)">
+            <span class="chamado-num">2026070110000043</span>
+            <span class="chamado-desc">Realizar rota de inspeção Física - Rota 02</span>
+          </div>
+          <div class="chamado-item" onclick="selecionarChamado('2026062610000105', this)">
+            <span class="chamado-num">2026062610000105</span>
+            <span class="chamado-desc">Indisponibilidade Alto-falante Barragem norte 000-CAM-001</span>
+          </div>
+          <div class="chamado-item" onclick="selecionarChamado('2026063010000133', this)">
+            <span class="chamado-num">2026063010000133</span>
+            <span class="chamado-desc">Indisponibilidade Camera 307-CAM-003/ 307-CAM-004</span>
+          </div>
+          <div class="chamado-item" onclick="selecionarChamado('2025082510000249', this)">
+            <span class="chamado-num">2025082510000249</span>
+            <span class="chamado-desc">Correção de Painel CFTV - 075-PNC-005 - Desorganizado</span>
+          </div>
+          <div class="chamado-item" onclick="selecionarChamado('2026070110000187', this)">
+            <span class="chamado-num">2026070110000187</span>
+            <span class="chamado-desc">008-PNC-013 - Manutenção preventiva no painel e em todas as câmeras referente ao mesmo</span>
+          </div>
+          <div class="chamado-item" onclick="selecionarChamado('2026070110000196', this)">
+            <span class="chamado-num">2026070110000196</span>
+            <span class="chamado-desc">008-PNC-014 - Manutenção preventiva no painel e em todas as câmeras referente ao mesmo</span>
+          </div>
+          <div class="chamado-item" onclick="selecionarChamado('2026061710000284', this)">
+            <span class="chamado-num">2026061710000284</span>
+            <span class="chamado-desc">008-PNC-015 - Manutenção preventiva no painel e em todas as câmeras referente ao mesmo</span>
+          </div>
+          <div class="chamado-item" onclick="selecionarChamado('2026042310000034', this)">
+            <span class="chamado-num">2026042310000034</span>
+            <span class="chamado-desc">Adequações de Monitoramento de Áreas Restritas para Auditoria da Comportos</span>
+          </div>
+          <div class="chamado-item" onclick="selecionarChamado('2026061810000157', this)">
+            <span class="chamado-num">2026061810000157</span>
+            <span class="chamado-desc">Baixo desempenho no enlace de rádio. Intermitência das câmeras da Empilhadeira 2</span>
+          </div>
+          <div class="chamado-item" onclick="selecionarChamado('2026063010000197', this)">
+            <span class="chamado-num">2026063010000197</span>
+            <span class="chamado-desc">Rádio e Switch sem comunicação Pátio contratadas</span>
+          </div>
+          <div class="chamado-item" onclick="selecionarChamado('2026031710000066', this)">
+            <span class="chamado-num">2026031710000066</span>
+            <span class="chamado-desc">Instalação de Nobreak no Laboratório</span>
+          </div>
+          <div class="chamado-item" onclick="selecionarChamado('2026061810000022', this)">
+            <span class="chamado-num">2026061810000022</span>
+            <span class="chamado-desc">Link Secundário PCU 014-PCU-001 BAD</span>
+          </div>
+          <div class="chamado-item" onclick="selecionarChamado('2026031710000093', this)">
+            <span class="chamado-num">2026031710000093</span>
+            <span class="chamado-desc">Adequação do Sistema de Alimentação das Câmeras com Eliminação de Intermediários</span>
+          </div>
+          <div class="chamado-item" onclick="selecionarChamado('2026052810000096', this)">
+            <span class="chamado-num">2026052810000096</span>
+            <span class="chamado-desc">Monitoramento das PCUs</span>
+          </div>
+          <div class="chamado-item" onclick="selecionarChamado('2026070210000023', this)">
+            <span class="chamado-num">2026070210000023</span>
+            <span class="chamado-desc">Peneiramento 3 - (308-PCU-031) Cooler danificado</span>
+          </div>
+          <div class="chamado-item" id="chamado-item-outro" onclick="selecionarOutro(this)">
+            <span class="chamado-num">OUTRO</span>
+            <span class="chamado-desc">Atendimento não programado — clique para digitar o chamado manualmente</span>
+          </div>
+        </div>
+        <div id="outroChamadoField" style="display:none;margin-top:10px">
+          <label>Digite o número / identificação do chamado</label>
+          <input type="text" class="field-input" id="f_chamado_outro" placeholder="Ex: 2026061010000999">
+        </div>
+      </div>
+
+      <hr class="field-divider">
+
+      <div class="field">
+        <label>Localização do Equipamento <span class="required-dot"></span></label>
+        <input type="text" class="field-input" id="f_local" placeholder="Ex: Pátio C — Área Norte">
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 2: Atividades -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">S02</span>
+      <span class="section-title">Descrição da Execução</span>
+    </div>
+    <div class="section-fields">
+      <div class="field">
+        <label>
+          Descreva as Atividades Realizadas
+          <span class="required-dot"></span>
+        </label>
+        <textarea class="field-input" id="f_atividades" placeholder="Descreva detalhadamente as atividades realizadas..."></textarea>
+      </div>
+
+      <hr class="field-divider">
+
+      <div class="field">
+        <label>Problema / Objetivo do Chamado</label>
+        <textarea class="field-input" id="f_problema" placeholder="Descreva o problema identificado ou objetivo da manutenção..."></textarea>
+      </div>
+
+      <hr class="field-divider">
+
+      <div class="field">
+        <label>Função do Equipamento</label>
+        <textarea class="field-input" id="f_funcao" placeholder="Descreva a função do equipamento no processo..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 3: Recursos -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">S03</span>
+      <span class="section-title">Recursos Utilizados</span>
+    </div>
+    <div class="section-fields">
+      <div class="field">
+        <label>Ferramentas Utilizadas</label>
+        <textarea class="field-input" id="f_ferramentas" placeholder="Listar ferramentas utilizadas na execução..."></textarea>
+      </div>
+
+      <hr class="field-divider">
+
+      <div class="field">
+        <label>Materiais Utilizados</label>
+        <textarea class="field-input" id="f_materiais" placeholder="Listar materiais aplicados..."></textarea>
+      </div>
+
+      <hr class="field-divider">
+
+      <div class="field">
+        <label>Recursos Especiais</label>
+        <div class="small" style="font-size:11px;color:var(--sub)">PTA, andaime, guindauto, etc. – se aplicável</div>
+        <div class="options">
+          <label class="opt-item"><input type="checkbox" id="r_pta"> PTA</label>
+          <label class="opt-item"><input type="checkbox" id="r_muque"> Caminhão Munck</label>
+          <label class="opt-item"><input type="checkbox" id="r_bloqueio"> Bloqueio</label>
+          <label class="opt-item"><input type="checkbox" id="r_outro"> Outro</label>
+        </div>
+        <div id="outroRecursoField" style="display:none;margin-top:10px">
+          <label>Qual recurso?</label>
+          <input type="text" class="field-input" id="r_outro_texto" placeholder="Digite o recurso">
+        </div>
+      </div>
+
+      <hr class="field-divider">
+
+      <div class="field">
+        <label>Ferramentas Especiais</label>
+        <textarea class="field-input" id="f_ferramentas_especiais" placeholder="Certificador de rede; Power Meter; Etiquetadora Brother; Identificador de cabos; Kit Fusão; etc."></textarea>
+      </div>
+
+      <hr class="field-divider">
+
+      <div class="field-row">
+        <div class="field">
+          <label>Tempo de Deslocamento <span class="required-dot"></span></label>
+          <input type="text" class="field-input" id="f_tempo_desloc" placeholder="Informar tempo ou N/A">
+        </div>
+        <div class="field">
+          <label>Tempo de Espera no Almoxarifado</label>
+          <input type="text" class="field-input" id="f_tempo_almox" placeholder="Informar tempo ou N/A">
+        </div>
+      </div>
+
+      <hr class="field-divider">
+
+      <div class="field">
+        <label>Tempo de Espera na Central de Veículos</label>
+        <input type="text" class="field-input" id="f_tempo_veiculos" placeholder="Informar tempo ou N/A">
+      </div>
+
+      <hr class="field-divider">
+
+      <div class="field-row">
+        <div class="field">
+          <label>Área Organizada</label>
+          <div class="options inline">
+            <label class="opt-item"><input type="radio" name="area_org" value="Sim"> Sim</label>
+            <label class="opt-item"><input type="radio" name="area_org" value="Não"> Não</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Desvio de HH</label>
+          <div class="options inline">
+            <label class="opt-item"><input type="radio" name="desvio_hh" value="Sim"> Sim</label>
+            <label class="opt-item"><input type="radio" name="desvio_hh" value="Não"> Não</label>
+          </div>
+        </div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- Status geral (chamado único) -->
+      <div class="field" id="status-geral-block">
+        <label>Status da Execução <span class="required-dot"></span></label>
+        <div class="options">
+          <label class="opt-item"><input type="radio" name="status" value="Concluído"> Concluído</label>
+          <label class="opt-item"><input type="radio" name="status" value="Em Andamento"> Em Andamento</label>
+          <label class="opt-item"><input type="radio" name="status" value="Não Concluído"> Não Concluído</label>
+          <label class="opt-item"><input type="radio" name="status" value="Replanejar"> Replanejar</label>
+        </div>
+      </div>
+
+      <!-- Status por chamado (múltiplos chamados) -->
+      <div id="status-multiplos-block" style="display:none">
+        <label style="font-weight:600;color:#5a7592;font-size:0.85em;text-transform:uppercase;letter-spacing:.05em">
+          Status por Chamado <span class="required-dot"></span>
+        </label>
+        <div id="status-multiplos-lista" style="margin-top:8px;display:flex;flex-direction:column;gap:12px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 4: Evidências -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">S04</span>
+      <span class="section-title">Evidências da Atividade</span>
+    </div>
+    <div class="section-fields">
+      <div class="field">
+        <label>Anexar Fotos da Atividade</label>
+        <div class="small">Fotos, relatórios ou outros arquivos comprobatórios da execução.</div>
+        <div id="upload-area" onclick="document.getElementById('evidencias-input').click()" ondragover="event.preventDefault();this.style.borderColor='var(--blue)';this.style.background='var(--mist)'" ondragleave="this.style.borderColor='var(--border)';this.style.background=''" ondrop="handleDrop(event)">
+          <div class="upload-icon">📁</div>
+          <div class="upload-text">Clique para selecionar ou arraste os arquivos aqui</div>
+          <div class="upload-hint">Imagens, PDF, DOC — máx. 20 arquivos</div>
+        </div>
+        <input type="file" id="evidencias-input" multiple="" accept="image/*,.pdf,.doc,.docx" style="display:none;" onchange="handleFiles(this.files)">
+        <div id="file-list"></div>
+        <div id="image-preview-list"></div>
+      </div>
+    </div>
+  </div>
+
+</form>
+
+<!-- SEÇÃO EXCLUSIVA PARA PDF: ANEXO DE EVIDÊNCIAS -->
+<div id="pdf-attachment-section" class="form-body">
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">ANEXO</span>
+      <span class="section-title">Feedback de Retorno de Atividade — Evidências</span>
+    </div>
+    <div class="section-fields">
+      <div class="anexo-title">Evidências Fotográficas da Execução</div>
+      <div class="anexo-grid" id="pdf-image-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ASSINATURA DO COLABORADOR -->
+<div style="max-width:680px;margin:0 auto 0;padding:0 16px">
+  <div style="background:#f4f7fb;border:1.5px solid #dce8f5;border-radius:10px;padding:16px 16px 12px">
+    <label style="font-weight:700;font-size:0.85em;color:#5a7592;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:8px">
+      ✍️ Assinatura do Responsável <span style="color:#C0392B">●</span>
+    </label>
+    <input type="text" id="f_assinatura" class="field-input"
+      placeholder="Digite seu nome completo para confirmar o preenchimento"
+      style="margin:0;border:1.5px solid #c8d9ec;background:#fff">
+    <p style="font-size:0.75em;color:#888;margin:6px 0 0">
+      Ao digitar seu nome, você confirma que as informações preenchidas são verdadeiras.
+    </p>
+  </div>
+</div>
+
+<!-- MODAL RESUMO PRÉ-ENVIO -->
+<div id="modal-resumo" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9000;overflow-y:auto;padding:20px">
+  <div style="background:#fff;border-radius:14px;max-width:480px;margin:auto;padding:22px 20px;box-shadow:0 8px 32px rgba(0,0,0,0.25)">
+    <h3 style="margin:0 0 6px;color:#0f2544;font-size:1.1em">📋 Revise antes de enviar</h3>
+    <p style="margin:0 0 14px;font-size:0.82em;color:#666">Confirme os dados abaixo e depois toque em <strong>Confirmar Envio</strong>.</p>
+    <div id="modal-conteudo" style="background:#f4f7fb;border-radius:8px;padding:12px;font-size:0.83em;color:#1c2b3a;line-height:1.7;margin-bottom:16px;max-height:45vh;overflow-y:auto"></div>
+    <button onclick="confirmarEnvioReal()" style="width:100%;padding:13px;background:#198754;color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-bottom:8px">✅ Confirmar e Enviar por E-mail</button>
+    <button onclick="fecharModal()" style="width:100%;padding:10px;background:#f4f7fb;color:#555;border:1px solid #dce8f5;border-radius:8px;font-size:0.9em;cursor:pointer">Voltar e Revisar</button>
+  </div>
+</div>
+
+<!-- MODAL CONFIRMAÇÃO PÓS-ENVIO -->
+<div id="modal-pos-envio" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9001;display:none;align-items:center;justify-content:center;padding:20px">
+  <div style="background:#fff;border-radius:14px;max-width:400px;width:100%;padding:28px 22px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.25)">
+    <div style="font-size:2.5em;margin-bottom:10px">📧</div>
+    <h3 style="margin:0 0 8px;color:#0f2544">App de e-mail aberto!</h3>
+    <p style="font-size:0.88em;color:#555;margin:0 0 20px">Você <strong>confirmou o envio</strong> no app de e-mail?</p>
+    <button onclick="registrarEnvioConfirmado()" style="width:100%;padding:13px;background:#198754;color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-bottom:10px">✅ Sim, enviei!</button>
+    <button onclick="document.getElementById('modal-pos-envio').style.display='none'" style="width:100%;padding:10px;background:#f4f7fb;color:#555;border:1px solid #dce8f5;border-radius:8px;font-size:0.9em;cursor:pointer">Ainda não enviei</button>
+  </div>
+</div>
+
+<!-- SUBMIT -->
+<div class="submit-wrap">
+  <!-- Indicador de status de envio -->
+  <div id="status-envio" style="padding:12px 16px;border-radius:10px;font-size:0.88em;font-weight:700;text-align:center;background:#fff3cd;color:#856404;border:1.5px solid #ffc107;letter-spacing:0.02em">
+    ⚠️ Formulário ainda não enviado por e-mail
+  </div>
+
+  <!-- Linha com os dois botões lado a lado -->
+  <div class="btn-row">
+    <button class="btn-submit" type="button" onclick="abrirModalResumo()">✉️ Enviar</button>
+    <button class="btn-pdf" id="btn-pdf-elem" type="button" onclick="exportPDFGuardado()"
+      style="opacity:0.4;cursor:not-allowed"
+      title="Envie o formulário por e-mail primeiro">⬇ PDF</button>
+  </div>
+
+  <!-- Instrução visual -->
+  <p id="instrucao-pdf" style="text-align:center;font-size:0.8em;color:#856404;margin:0">
+    📧 Envie o formulário por e-mail antes de exportar o PDF
+  </p>
+
+  <!-- Botões de download (aparecem após envio confirmado) -->
+  <div id="download-buttons" style="display:none;flex-direction:column;gap:8px">
+    <p style="text-align:center;font-size:0.82em;color:#5a7592;margin:0;font-weight:600">⬇️ Baixar PDFs</p>
+    <div style="display:flex;gap:10px">
+      <button onclick="exportarFormularioPDF()" style="flex:1;padding:13px;background:#0f2544;color:#fff;border:none;border-radius:10px;font-size:0.9em;font-weight:700;cursor:pointer">
+        📄 Formulário
+      </button>
+      <button onclick="exportarEvidenciasPDF()" style="flex:1;padding:13px;background:#1a3a6b;color:#fff;border:none;border-radius:10px;font-size:0.9em;font-weight:700;cursor:pointer">
+        🖼️ Evidências
+      </button>
+    </div>
+  </div>
+
+  <!-- Botão Novo RDO (aparece após envio) -->
+  <button id="btn-novo-rdo" onclick="novoRDO()" style="display:none;width:100%;padding:14px;background:#0f2544;color:#e8a020;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;letter-spacing:0.03em">
+    🆕 Preencher Novo RDO
+  </button>
+</div>
+
+<div class="form-footer">
+  <p>Campos marcados com <span style="color:#C0392B;">●</span> são obrigatórios.</p>
+</div>
+
+<!-- jsPDF carregado via CDN com fallback -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+// Verifica se jsPDF carregou corretamente
+if (typeof window.jspdf === 'undefined') {
+  console.warn('jsPDF não carregou do CDN, tentando novamente...');
+}
+</script>
+<script>
+const STORAGE_KEY = 'formulario_retorno_atividade_final';
+const EMAIL_DESTINO = 'brayan.santos@samprojetos.com,projeto.sam@imanteceletrica.com.br';
+let attachedFiles = [];
+
+function byId(id){ return document.getElementById(id); }
+
+// Format YYYY-MM-DD as DD/MM/YYYY for display
+function formatarData(iso){
+  if(!iso) return '';
+  var p = iso.split('-');
+  if(p.length !== 3) return iso;
+  return p[2] + '/' + p[1] + '/' + p[0];
+}
+
+// Seleção múltipla de chamados
+var chamadosSelecionados = [];
+
+var statusPorChamado = {}; // { numero: 'Concluído' | 'Em Andamento' | ... }
+
+function atualizarCampoChamado() {
+  var todos = chamadosSelecionados.slice();
+  var outro = byId('f_chamado_outro').value.trim();
+  if (outro) todos.push(outro);
+  byId('f_chamado').value = todos.join(', ');
+  renderStatusMultiplos();
+  // Atualiza contador
+  var contador = byId('chamados-contador');
+  var num = byId('chamados-contador-num');
+  if (contador && num) {
+    num.textContent = todos.length;
+    contador.style.display = todos.length > 0 ? 'block' : 'none';
+  }
+}
+
+var STATUS_OPTS = ['Concluído', 'Em Andamento', 'Não Concluído', 'Replanejar'];
+
+function renderStatusMultiplos() {
+  var todos = chamadosSelecionados.slice();
+  var outro = byId('f_chamado_outro').value.trim();
+  if (outro) todos.push(outro);
+
+  var geralBlock = byId('status-geral-block');
+  var multiplosBlock = byId('status-multiplos-block');
+  var lista = byId('status-multiplos-lista');
+
+  if (todos.length <= 1) {
+    geralBlock.style.display = '';
+    multiplosBlock.style.display = 'none';
+    return;
+  }
+
+  // Múltiplos: oculta status geral, mostra individual
+  geralBlock.style.display = 'none';
+  multiplosBlock.style.display = '';
+  lista.innerHTML = '';
+
+  todos.forEach(function(num) {
+    var desc = '';
+    document.querySelectorAll('.chamado-item').forEach(function(item) {
+      var n = item.querySelector('.chamado-num');
+      var d = item.querySelector('.chamado-desc');
+      if (n && n.textContent.trim() === num && d) desc = d.textContent.trim();
+    });
+
+    var div = document.createElement('div');
+    div.style.cssText = 'background:#f4f7fb;border-radius:8px;padding:10px 12px;border:1px solid #dce8f5';
+
+    var lbl = document.createElement('div');
+    lbl.style.cssText = 'font-size:0.82em;font-weight:700;color:#0f2544;margin-bottom:6px';
+    lbl.textContent = num + (desc ? ' — ' + desc.substring(0, 60) + (desc.length > 60 ? '…' : '') : '');
+    div.appendChild(lbl);
+
+    var opts = document.createElement('div');
+    opts.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px';
+
+    STATUS_OPTS.forEach(function(opt) {
+      var id = 'status_' + num.replace(/\W/g,'_') + '_' + opt.replace(/\W/g,'_');
+      var labelEl = document.createElement('label');
+      labelEl.style.cssText = 'display:flex;align-items:center;gap:4px;font-size:0.88em;cursor:pointer;background:#fff;border:1px solid #c8d9ec;border-radius:6px;padding:4px 10px;white-space:nowrap';
+
+      var radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.name = 'status_chamado_' + num;
+      radio.value = opt;
+      if (statusPorChamado[num] === opt) radio.checked = true;
+      radio.addEventListener('change', function() {
+        statusPorChamado[num] = opt;
+        saveData();
+      });
+
+      labelEl.appendChild(radio);
+      labelEl.appendChild(document.createTextNode(opt));
+      opts.appendChild(labelEl);
+    });
+
+    div.appendChild(opts);
+    lista.appendChild(div);
+  });
+}
+
+function selecionarChamado(numero, el) {
+  var idx = chamadosSelecionados.indexOf(numero);
+  if (idx === -1) {
+    chamadosSelecionados.push(numero);
+    el.classList.add('selected');
+  } else {
+    chamadosSelecionados.splice(idx, 1);
+    el.classList.remove('selected');
+  }
+  atualizarCampoChamado();
+  saveData();
+}
+
+// Select "Outro" — unplanned call, allow manual typing
+function selecionarOutro(el) {
+  byId('outroChamadoField').style.display = 'block';
+  byId('f_chamado_outro').focus();
+  saveData();
+}
+
+// Sync the "Outro" manual input into the main chamado field
+byId('f_chamado_outro').addEventListener('input', function(){
+  atualizarCampoChamado();
+  saveData();
+});
+
+// Toggle "Outro Recurso" field
+byId('r_outro').addEventListener('change', function(){
+  const field = byId('outroRecursoField');
+  field.style.display = this.checked ? 'block' : 'none';
+  if(!this.checked) byId('r_outro_texto').value = '';
+  saveData();
+});
+
+// File handling
+function handleFiles(files){
+  for(let i = 0; i < files.length; i++){
+    if(attachedFiles.length >= 20) break;
+    attachedFiles.push(files[i]);
+  }
+  renderFileList();
+  saveData();
+}
+
+function handleDrop(e){
+  e.preventDefault();
+  const area = byId('upload-area');
+  area.style.borderColor = 'var(--border)';
+  area.style.background = '';
+  handleFiles(e.dataTransfer.files);
+}
+
+function removeFile(idx){
+  attachedFiles.splice(idx, 1);
+  renderFileList();
+  saveData();
+}
+
+function formatBytes(b){
+  if(b < 1024) return b + ' B';
+  if(b < 1048576) return (b/1024).toFixed(1) + ' KB';
+  return (b/1048576).toFixed(1) + ' MB';
+}
+
+function renderFileList(){
+  const list = byId('file-list');
+  list.innerHTML = '';
+  attachedFiles.forEach((f, i) => {
+    const ext = f.name.split('.').pop().toUpperCase();
+    const div = document.createElement('div');
+    div.className = 'file-item';
+    div.innerHTML = `<span class="file-ext">${ext}</span><span class="file-name">${f.name}</span><span class="file-size">${formatBytes(f.size)}</span><button type="button" class="file-remove" onclick="removeFile(${i})">×</button>`;
+    list.appendChild(div);
+  });
+
+  // Image previews
+  const imgList = byId('image-preview-list');
+  imgList.innerHTML = '';
+  attachedFiles.forEach((f, i) => {
+    if(!f.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'img-preview-item';
+      wrap.innerHTML = `<img src="${e.target.result}" alt="${f.name}"><div class="img-name">${f.name}</div><button type="button" class="img-remove" onclick="removeFile(${i})">×</button>`;
+      imgList.appendChild(wrap);
+    };
+    reader.readAsDataURL(f);
+  });
+
+  updateStats();
+  // Indicador de fotos obrigatórias
+  var imgs = attachedFiles.filter(function(f){ return f.type.startsWith('image/'); });
+  var uploadArea = byId('upload-area');
+  var fotoAviso = byId('foto-aviso');
+  if (!fotoAviso && uploadArea) {
+    fotoAviso = document.createElement('p');
+    fotoAviso.id = 'foto-aviso';
+    fotoAviso.style.cssText = 'font-size:0.8em;margin-top:6px;font-weight:600;text-align:center';
+    uploadArea.parentNode.insertBefore(fotoAviso, uploadArea.nextSibling);
+  }
+  if (fotoAviso) {
+    if (imgs.length === 0) {
+      fotoAviso.style.color = '#856404';
+      fotoAviso.textContent = '⚠️ Nenhuma foto anexada — obrigatório pelo menos 1';
+    } else {
+      fotoAviso.style.color = '#198754';
+      fotoAviso.textContent = '✅ ' + imgs.length + ' foto(s) anexada(s)';
+    }
+  }
+}
+
+// Save/Load Data
+// Wrapper seguro para localStorage: em arquivos .html abertos via file://,
+// dentro do visualizador do WhatsApp, em modo de navegação privada, ou com
+// armazenamento bloqueado pelo navegador, localStorage.setItem/getItem pode
+// LANÇAR uma exceção (SecurityError/QuotaExceededError) em vez de falhar
+// silenciosamente. Sem isso, qualquer função que chame saveData() (incluindo
+// enviarEmail() e exportPDF()) para de executar IMEDIATAMENTE e o botão
+// parece simplesmente "não reagir".
+// ─── CONTROLE DE ENVIO ──────────────────────────────────────────────────────
+var formularioEnviado = false;
+
+function marcarComoEnviado() {
+  formularioEnviado = true;
+  // Atualiza indicador visual
+  var status = document.getElementById('status-envio');
+  if (status) {
+    status.style.background = '#d1e7dd';
+    status.style.color = '#0a3622';
+    status.style.borderColor = '#198754';
+    status.textContent = '✅ Formulário enviado por e-mail!';
+  }
+  // Libera botão de PDF
+  var btnPdf = document.getElementById('btn-pdf-elem');
+  if (btnPdf) {
+    btnPdf.style.opacity = '1';
+    btnPdf.style.cursor = 'pointer';
+    btnPdf.removeAttribute('title');
+  }
+  var instrucao = document.getElementById('instrucao-pdf');
+  if (instrucao) instrucao.style.display = 'none';
+}
+
+// ─── MODAL RESUMO ────────────────────────────────────────────────────────────
+function abrirModalResumo() {
+  // Valida antes de abrir modal
+  var erros = [];
+  if (!byId('f_chamado').value.trim()) erros.push('Chamado');
+  if (!byId('f_tag').value.trim()) erros.push('Tag do Equipamento');
+  if (!byId('f_local').value.trim()) erros.push('Localização');
+  if (!byId('f_horario_inicio').value) erros.push('Hora de Início');
+  if (!byId('f_horario_fim').value) erros.push('Hora de Fim');
+  // Valida hora de fim > hora de início
+  if (byId('f_horario_inicio').value && byId('f_horario_fim').value) {
+    if (byId('f_horario_fim').value <= byId('f_horario_inicio').value) {
+      erros.push('Hora de Fim deve ser maior que Hora de Início');
+    }
+  }
+  if (!byId('f_equipe').value.trim()) erros.push('Equipe de Execução');
+  if (!byId('f_assinatura').value.trim()) erros.push('Assinatura do Responsável');
+  if (!byId('f_atividades').value.trim()) erros.push('Descrição da Execução');
+  if (!byId('f_tempo_desloc').value.trim()) erros.push('Tempo de Deslocamento');
+  // Foto obrigatória
+  var imgs = attachedFiles.filter(function(f){ return f.type.startsWith('image/'); });
+  if (imgs.length === 0) erros.push('Pelo menos 1 foto de evidência');
+  // Status
+  var _todosChamados = chamadosSelecionados.slice();
+  var _outro = byId('f_chamado_outro').value.trim();
+  if (_outro) _todosChamados.push(_outro);
+  if (_todosChamados.length > 1) {
+    var _semStatus = _todosChamados.filter(function(n){ return !statusPorChamado[n]; });
+    if (_semStatus.length > 0) erros.push('Status de ' + _semStatus.length + ' chamado(s)');
+  } else {
+    if (!document.querySelector('input[name="status"]:checked')) erros.push('Status da Execução');
+  }
+  if (erros.length > 0) {
+    alert('Preencha os campos obrigatórios antes de enviar:\n\n• ' + erros.join('\n• '));
+    return;
+  }
+
+  // Monta resumo
+  var c = byId('modal-conteudo');
+  var statusTxt = '';
+  if (_todosChamados.length > 1) {
+    statusTxt = _todosChamados.map(function(n){ return n + ': ' + (statusPorChamado[n] || '-'); }).join(' | ');
+  } else {
+    statusTxt = document.querySelector('input[name="status"]:checked')?.value || '-';
+  }
+  c.innerHTML = [
+    '<b>Chamado(s):</b> ' + byId('f_chamado').value,
+    '<b>Tag:</b> ' + byId('f_tag').value,
+    '<b>Local:</b> ' + byId('f_local').value,
+    '<b>Data:</b> ' + formatarData(byId('f_data').value),
+    '<b>Horário:</b> ' + byId('f_horario_inicio').value + ' → ' + byId('f_horario_fim').value,
+    '<b>Equipe:</b> ' + byId('f_equipe').value,
+    '<b>Status:</b> ' + statusTxt,
+    '<b>Fotos:</b> ' + imgs.length + ' anexada(s)',
+    '<b>Responsável:</b> ' + (byId('f_assinatura').value || '-'),
+  ].join('<br>');
+
+  byId('modal-resumo').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function fecharModal() {
+  byId('modal-resumo').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function confirmarEnvioReal() {
+  fecharModal();
+  // Mostra o modal de confirmação ANTES de abrir o app de e-mail
+  // pois window.location.href pode pausar o JS em alguns navegadores
+  var m = byId('modal-pos-envio');
+  m.style.display = 'flex';
+  // Pequeno delay para o modal aparecer antes do e-mail abrir
+  setTimeout(function() {
+    enviarEmail();
+  }, 300);
+}
+
+function registrarEnvioConfirmado() {
+  byId('modal-pos-envio').style.display = 'none';
+  marcarComoEnviado();
+  // Mostra botões de download e Novo RDO
+  var dlButtons = byId('download-buttons');
+  if (dlButtons) dlButtons.style.display = 'flex';
+  var btnNovo = byId('btn-novo-rdo');
+  if (btnNovo) btnNovo.style.display = 'block';
+}
+
+// ─── NOVO RDO ─────────────────────────────────────────────────────────────
+function novoRDO() {
+  if (!confirm('Tem certeza? Todos os dados preenchidos serão apagados.')) return;
+  // Limpa campos
+  ['f_chamado','f_chamado_outro','f_tag','f_local','f_atividades','f_problema','f_funcao',
+   'f_ferramentas','f_materiais','f_ferramentas_especiais','f_tempo_desloc',
+   'f_tempo_almox','f_tempo_veiculos','f_horario_inicio','f_horario_fim','f_equipe','f_assinatura'].forEach(function(id){
+    var el = byId(id);
+    if (el) el.value = '';
+  });
+  byId('f_data').value = new Date().toISOString().split('T')[0];
+  // Limpa radios
+  document.querySelectorAll('input[type="radio"]').forEach(function(r){ r.checked = false; });
+  // Limpa seleção de chamados
+  chamadosSelecionados = [];
+  statusPorChamado = {};
+  document.querySelectorAll('.chamado-item').forEach(function(el){ el.classList.remove('selected'); });
+  renderStatusMultiplos();
+  // Limpa arquivos
+  attachedFiles = [];
+  atualizarListaArquivos();
+  // Limpa outroChamadoField
+  byId('outroChamadoField').style.display = 'none';
+  // Reseta estado de envio
+  formularioEnviado = false;
+  var status = byId('status-envio');
+  if (status) {
+    status.style.background = '#fff3cd';
+    status.style.color = '#856404';
+    status.style.borderColor = '#ffc107';
+    status.textContent = '⚠️ Formulário ainda não enviado por e-mail';
+  }
+  var btnPdf = byId('btn-pdf-elem');
+  if (btnPdf) { btnPdf.style.opacity = '0.4'; btnPdf.style.cursor = 'not-allowed'; btnPdf.title = 'Envie o formulário por e-mail primeiro'; }
+  var instrucao = byId('instrucao-pdf');
+  if (instrucao) instrucao.style.display = '';
+  var dlButtons = byId('download-buttons');
+  if (dlButtons) dlButtons.style.display = 'none';
+  var btnNovo = byId('btn-novo-rdo');
+  if (btnNovo) btnNovo.style.display = 'none';
+  // Limpa localStorage
+  safeSetItem(STORAGE_KEY, '');
+  updateStats();
+  window.scrollTo(0, 0);
+}
+
+function exportPDFGuardado() {
+  if (!formularioEnviado) {
+    if (confirm('⚠️ Você ainda não enviou o formulário por e-mail.\n\nDeseja enviar agora antes de exportar o PDF?')) {
+      enviarEmail();
+    }
+    return;
+  }
+  exportPDF();
+}
+
+// Aviso ao tentar sair sem ter enviado
+window.addEventListener('beforeunload', function(e) {
+  if (!formularioEnviado && byId('f_chamado') && byId('f_chamado').value.trim()) {
+    var msg = 'Você ainda não enviou o formulário por e-mail. Tem certeza que quer sair?';
+    e.preventDefault();
+    e.returnValue = msg;
+    return msg;
+  }
+});
+
+var storageDisponivel = (function(){
+  try {
+    var teste = '__teste_storage__';
+    localStorage.setItem(teste, '1');
+    localStorage.removeItem(teste);
+    return true;
+  } catch(e) {
+    return false;
+  }
+})();
+
+function safeSetItem(key, value){
+  if (!storageDisponivel) return false;
+  try {
+    localStorage.setItem(key, value);
+    return true;
+  } catch(e) {
+    console.warn('Não foi possível salvar localmente (localStorage indisponível):', e);
+    return false;
+  }
+}
+
+function safeGetItem(key){
+  if (!storageDisponivel) return null;
+  try {
+    return localStorage.getItem(key);
+  } catch(e) {
+    console.warn('Não foi possível ler dados salvos localmente (localStorage indisponível):', e);
+    return null;
+  }
+}
+
+function saveData(){
+  const data = {
+    chamado: byId('f_chamado').value,
+    chamados_selecionados: chamadosSelecionados,
+    chamado_outro: byId('f_chamado_outro').value,
+    status_por_chamado: statusPorChamado,
+    tag: byId('f_tag').value,
+    data: byId('f_data').value,
+    horario_inicio: byId('f_horario_inicio').value,
+    horario_fim: byId('f_horario_fim').value,
+    equipe: byId('f_equipe').value,
+    assinatura: byId('f_assinatura').value,
+    local: byId('f_local').value,
+    atividades: byId('f_atividades').value,
+    problema: byId('f_problema').value,
+    funcao: byId('f_funcao').value,
+    ferramentas: byId('f_ferramentas').value,
+    materiais: byId('f_materiais').value,
+    ferramentas_especiais: byId('f_ferramentas_especiais').value,
+    tempo_desloc: byId('f_tempo_desloc').value,
+    tempo_almox: byId('f_tempo_almox').value,
+    tempo_veiculos: byId('f_tempo_veiculos').value,
+    r_pta: byId('r_pta').checked,
+    r_muque: byId('r_muque').checked,
+    r_bloqueio: byId('r_bloqueio').checked,
+    r_outro: byId('r_outro').checked,
+    r_outro_texto: byId('r_outro_texto').value,
+    area_org: document.querySelector('input[name="area_org"]:checked')?.value || '',
+    desvio_hh: document.querySelector('input[name="desvio_hh"]:checked')?.value || '',
+    status: document.querySelector('input[name="status"]:checked')?.value || ''
+  };
+  safeSetItem(STORAGE_KEY, JSON.stringify(data));
+  updateStats();
+}
+
+function loadData(){
+  const raw = safeGetItem(STORAGE_KEY);
+  if(!raw) {
+    byId('f_data').value = new Date().toISOString().split('T')[0];
+    updateStats();
+    return;
+  }
+
+  try{
+    const data = JSON.parse(raw);
+    // Restaura seleção múltipla de chamados
+    chamadosSelecionados = data.chamados_selecionados || [];
+    statusPorChamado = data.status_por_chamado || {};
+    byId('f_chamado_outro').value = data.chamado_outro || '';
+    // Marca visualmente os itens selecionados
+    document.querySelectorAll('.chamado-item').forEach(function(item) {
+      var num = item.querySelector('.chamado-num');
+      if (num && chamadosSelecionados.indexOf(num.textContent.trim()) !== -1) {
+        item.classList.add('selected');
+      }
+    });
+    atualizarCampoChamado();
+    if (!byId('f_chamado').value) byId('f_chamado').value = data.chamado || '';
+    byId('f_tag').value = data.tag || '';
+    byId('f_data').value = data.data || new Date().toISOString().split('T')[0];
+    byId('f_horario_inicio').value = data.horario_inicio || '';
+    byId('f_horario_fim').value = data.horario_fim || '';
+    byId('f_equipe').value = data.equipe || '';
+    if(byId('f_assinatura')) byId('f_assinatura').value = data.assinatura || '';
+    byId('f_local').value = data.local || '';
+    byId('f_atividades').value = data.atividades || '';
+    byId('f_problema').value = data.problema || '';
+    byId('f_funcao').value = data.funcao || '';
+    byId('f_ferramentas').value = data.ferramentas || '';
+    byId('f_materiais').value = data.materiais || '';
+    byId('f_ferramentas_especiais').value = data.ferramentas_especiais || '';
+    byId('f_tempo_desloc').value = data.tempo_desloc || '';
+    byId('f_tempo_almox').value = data.tempo_almox || '';
+    byId('f_tempo_veiculos').value = data.tempo_veiculos || '';
+    byId('r_pta').checked = data.r_pta || false;
+    byId('r_muque').checked = data.r_muque || false;
+    byId('r_bloqueio').checked = data.r_bloqueio || false;
+    byId('r_outro').checked = data.r_outro || false;
+    byId('r_outro_texto').value = data.r_outro_texto || '';
+
+    // Restore chamado selection highlight (weekly item or "Outro")
+    var matchedWeekly = false;
+    if(data.chamado) {
+      document.querySelectorAll('.chamado-item').forEach(function(item) {
+        var numEl = item.querySelector('.chamado-num');
+        if(numEl && numEl.textContent === data.chamado) {
+          item.classList.add('selected');
+          matchedWeekly = true;
+        }
+      });
+    }
+    if(!matchedWeekly && data.chamado_outro) {
+      byId('chamado-item-outro').classList.add('selected');
+      byId('outroChamadoField').style.display = 'block';
+    }
+
+    if(data.area_org) { var a = document.querySelector(`input[name="area_org"][value="${data.area_org}"]`); if(a) a.checked = true; }
+    if(data.desvio_hh) { var d = document.querySelector(`input[name="desvio_hh"][value="${data.desvio_hh}"]`); if(d) d.checked = true; }
+    if(data.status) { var s = document.querySelector(`input[name="status"][value="${data.status}"]`); if(s) s.checked = true; }
+  }catch(e){}
+
+  toggleOutroRecursoField();
+  updateStats();
+}
+
+function toggleOutroRecursoField(){
+  const field = byId('outroRecursoField');
+  field.style.display = byId('r_outro').checked ? 'block' : 'none';
+}
+
+// Auto-save
+['f_chamado','f_tag','f_data','f_horario_inicio','f_horario_fim','f_equipe','f_local','f_atividades','f_problema','f_funcao','f_ferramentas','f_materiais','f_ferramentas_especiais','f_tempo_desloc','f_tempo_almox','f_tempo_veiculos','r_outro_texto'].forEach(id => {
+  byId(id).addEventListener('input', saveData);
+  byId(id).addEventListener('change', saveData);
+});
+
+['r_pta','r_muque','r_bloqueio'].forEach(id => {
+  byId(id).addEventListener('change', saveData);
+});
+
+document.querySelectorAll('input[name="status"], input[name="area_org"], input[name="desvio_hh"]').forEach(el => {
+  el.addEventListener('change', saveData);
+});
+
+// Stats
+function updateStats(){
+  /* Painel de estatísticas removido do cabeçalho. */
+}
+
+// Build the RDO-style report body (shared by e-mail)
+function montarRecursosEspeciais(){
+  var recursos = [];
+  if(byId('r_pta').checked) recursos.push('PTA');
+  if(byId('r_muque').checked) recursos.push('Caminhão Munck');
+  if(byId('r_bloqueio').checked) recursos.push('Bloqueio');
+  if(byId('r_outro').checked) recursos.push(byId('r_outro_texto').value || 'Outro');
+  return recursos.length ? recursos.join(', ') : 'N/A';
+}
+
+// Email — formatted to match the RDO template
+function enviarEmail(){
+ try {
+  saveData();
+
+  const chamado = byId('f_chamado').value || 'SEM NÚMERO';
+  const subject = 'RDO – Equipe Infraestrutura de Automação – Chamado ' + chamado;
+
+  var nl = '\r\n';
+  var b = '';
+  b += 'RDO – EQUIPE INFRAESTRUTURA DE AUTOMAÇÃO' + nl + nl;
+  b += 'Chamado: ' + (byId('f_chamado').value || '-') + nl;
+  b += 'Tag: ' + (byId('f_tag').value || '-') + nl;
+  b += 'Local: ' + (byId('f_local').value || '-') + nl + nl;
+  b += 'Data: ' + (formatarData(byId('f_data').value) || '-') + nl;
+  b += 'Hora de Início: ' + (byId('f_horario_inicio').value || '-') + nl;
+  b += 'Hora de Fim: ' + (byId('f_horario_fim').value || '-') + nl;
+  b += 'Equipe: ' + (byId('f_equipe').value || '-') + nl;
+  b += 'Responsável: ' + (byId('f_assinatura').value || '-') + nl + nl;
+  b += 'Descrição da Execução:' + nl + (byId('f_atividades').value || '-') + nl + nl;
+  b += 'Problema / Objetivo do Chamado:' + nl + (byId('f_problema').value || '-') + nl + nl;
+  b += 'Função do Equipamento / Ativo:' + nl + (byId('f_funcao').value || '-') + nl + nl;
+  b += 'Ferramentas Utilizadas:' + nl + (byId('f_ferramentas').value || '-') + nl;
+  b += 'Materiais Utilizados:' + nl + (byId('f_materiais').value || '-') + nl + nl;
+  b += 'Recursos Especiais:' + nl + montarRecursosEspeciais() + nl;
+  b += 'Ferramentas Especiais:' + nl + (byId('f_ferramentas_especiais').value || 'N/A') + nl + nl;
+  b += 'Tempo de Deslocamento:' + nl + (byId('f_tempo_desloc').value || 'N/A') + nl;
+  b += 'Tempo de Espera no Almoxarifado:' + nl + (byId('f_tempo_almox').value || 'N/A') + nl;
+  b += 'Tempo de Espera na Central de Veículos:' + nl + (byId('f_tempo_veiculos').value || 'N/A') + nl + nl;
+  b += 'Área Organizada:' + nl + (document.querySelector('input[name="area_org"]:checked')?.value || '-') + nl;
+  b += 'Desvio de HH:' + nl + (document.querySelector('input[name="desvio_hh"]:checked')?.value || '-') + nl + nl;
+  // Status no e-mail: individual ou geral
+  var _eChamados = chamadosSelecionados.slice();
+  var _eOutro = byId('f_chamado_outro').value.trim();
+  if (_eOutro) _eChamados.push(_eOutro);
+  if (_eChamados.length > 1) {
+    b += 'Status por Chamado:' + nl;
+    _eChamados.forEach(function(n){ b += '  • ' + n + ': ' + (statusPorChamado[n] || '-') + nl; });
+  } else {
+    b += 'Status da Execução:' + nl + (document.querySelector('input[name="status"]:checked')?.value || '-') + nl;
+  }
+
+  if(attachedFiles.length) {
+    b += nl + 'Evidências anexadas: ' + attachedFiles.length + nl;
+    attachedFiles.forEach(function(f) { b += '- ' + f.name + nl; });
+    b += nl + 'Obs.: Anexe os arquivos de evidência ao enviar este e-mail.';
+  }
+
+  var mailtoLink = 'mailto:' + EMAIL_DESTINO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(b);
+
+  window.location.href = mailtoLink;
+
+  // O envio é confirmado manualmente pelo colaborador via modal-pos-envio
+
+ } catch(erro) {
+  console.error('Erro ao tentar enviar e-mail:', erro);
+  alert('Não foi possível abrir o aplicativo de e-mail automaticamente.\n\n' +
+        'Isso costuma acontecer quando o formulário é aberto direto pelo WhatsApp ou outro app, ' +
+        'em vez do navegador (Chrome/Safari).\n\n' +
+        'Tente: toque e segure o arquivo recebido e escolha "Abrir com" → Chrome ou Safari, depois tente novamente.\n\n' +
+        'Detalhe técnico: ' + (erro && erro.message ? erro.message : erro));
+ }
+}
+
+// ─── CONFIGURAÇÕES DE TAMANHO ───────────────────────────────────────────────
+var PDF_MAX_BYTES = 2 * 1024 * 1024; // 2 MB por arquivo
+
+// Redimensiona e comprime uma imagem para caber dentro de maxBytes estimados.
+// Tenta qualidade 0.7 → 0.5 → 0.3, e reduz resolução se ainda precisar.
+function lerImagemParaPDF(file) {
+  return new Promise(function(resolve, reject) {
+    var reader = new FileReader();
+    reader.onerror = function() { reject(new Error('Falha ao ler ' + file.name)); };
+    reader.onload = function(e) {
+      var img = new Image();
+      img.onerror = function() { reject(new Error('Imagem inválida: ' + file.name)); };
+      img.onload = function() {
+        try {
+          // Limite de dimensão: máx 1600px em qualquer lado
+          var MAX_DIM = 1200; // Reduzido para garantir PDF < 2MB
+          var srcW = img.naturalWidth  || img.width;
+          var srcH = img.naturalHeight || img.height;
+          var scale = Math.min(1, MAX_DIM / Math.max(srcW, srcH));
+          var cW = Math.round(srcW * scale);
+          var cH = Math.round(srcH * scale);
+
+          var canvas = document.createElement('canvas');
+          canvas.width  = cW;
+          canvas.height = cH;
+          var ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, cW, cH);
+          ctx.drawImage(img, 0, 0, cW, cH);
+
+          // Tenta qualidades decrescentes até ficar abaixo de ~300 KB por imagem
+          var targetBytes = 150 * 1024; // 150 KB por imagem garante PDF < 2MB com várias fotos
+          var qualities = [0.6, 0.4, 0.25, 0.15];
+          var dataUrl = canvas.toDataURL('image/jpeg', qualities[0]);
+          for (var qi = 1; qi < qualities.length; qi++) {
+            var approxBytes = Math.round(dataUrl.length * 0.75);
+            if (approxBytes <= targetBytes) break;
+            dataUrl = canvas.toDataURL('image/jpeg', qualities[qi]);
+          }
+
+          // Se ainda grande, reduz a resolução ao meio e tenta novamente
+          var approxFinal = Math.round(dataUrl.length * 0.75);
+          if (approxFinal > targetBytes && cW > 400) {
+            cW = Math.round(cW * 0.5);
+            cH = Math.round(cH * 0.5);
+            canvas.width  = cW;
+            canvas.height = cH;
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, cW, cH);
+            ctx.drawImage(img, 0, 0, cW, cH);
+            dataUrl = canvas.toDataURL('image/jpeg', 0.35);
+          }
+
+          resolve({ data: dataUrl, w: cW, h: cH, name: file.name });
+        } catch(err) { reject(err); }
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+// Estima o tamanho em bytes do PDF atual (base64 do output interno do jsPDF)
+function estimarTamanhoPDF(doc) {
+  try {
+    var raw = doc.output('datauristring');
+    // base64 → bytes: comprimento da parte base64 * 3/4
+    var b64 = raw.split(',')[1] || '';
+    return Math.round(b64.length * 0.75);
+  } catch(e) { return 0; }
+}
+
+// Constrói o bloco textual (sem imagens) no doc passado e retorna o doc.
+function construirTextoPDF(doc) {
+  var pageWidth = 210;
+  var marginX   = 14;
+  var contentW  = 182;
+  var y = 0;
+
+  function checkY(needed) {
+    if (y + needed > 280) { doc.addPage(); y = 16; }
+  }
+  function sectionHeader(num, title) {
+    checkY(14);
+    doc.setFillColor(15, 37, 68);
+    doc.rect(marginX, y, contentW, 9, 'F');
+    doc.setTextColor(232, 160, 32);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.text(num, marginX + 3, y + 6);
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(9);
+    doc.text(title.toUpperCase(), marginX + 18, y + 6);
+    doc.setTextColor(28, 43, 58);
+    y += 13;
+  }
+  function pdfField(label, value) {
+    var val   = value || '-';
+    var lines = doc.splitTextToSize(val, contentW - 2);
+    checkY(5 + lines.length * 4.5 + 4);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(90, 117, 146);
+    doc.text(label.toUpperCase(), marginX, y);
+    y += 4.5;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9.5);
+    doc.setTextColor(28, 43, 58);
+    doc.text(lines, marginX, y);
+    y += lines.length * 4.5 + 4;
+  }
+  function divider() {
+    checkY(4);
+    doc.setDrawColor(200, 214, 229);
+    doc.line(marginX, y, marginX + contentW, y);
+    y += 4;
+  }
+
+  // Header
+  doc.setFillColor(15, 37, 68);
+  doc.rect(0, 0, pageWidth, 22, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(13);
+  doc.text('RDO – EQUIPE INFRAESTRUTURA DE AUTOMAÇÃO', marginX, 12);
+  doc.setTextColor(232, 160, 32);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8);
+  doc.text('Feedback de retorno de execução de Ordem/Chamado', marginX, 19);
+  y = 30;
+
+  sectionHeader('S01', 'Identificação do Chamado');
+  pdfField('Chamado', byId('f_chamado').value);
+  divider();
+  pdfField('Tag', byId('f_tag').value);
+  divider();
+  pdfField('Local', byId('f_local').value);
+  divider();
+  pdfField('Data', formatarData(byId('f_data').value));
+  divider();
+  pdfField('Hora de Início', byId('f_horario_inicio').value);
+  divider();
+  pdfField('Hora de Fim', byId('f_horario_fim').value);
+  divider();
+  pdfField('Equipe', byId('f_equipe').value);
+  divider();
+  pdfField('Responsável / Assinatura', byId('f_assinatura').value);
+  y += 4;
+
+  sectionHeader('S02', 'Descrição da Execução');
+  pdfField('Descrição da Execução', byId('f_atividades').value);
+  divider();
+  pdfField('Problema / Objetivo do Chamado', byId('f_problema').value);
+  divider();
+  pdfField('Função do Equipamento / Ativo', byId('f_funcao').value);
+  y += 4;
+
+  sectionHeader('S03', 'Recursos Utilizados');
+  pdfField('Ferramentas Utilizadas', byId('f_ferramentas').value);
+  divider();
+  pdfField('Materiais Utilizados', byId('f_materiais').value);
+  divider();
+  pdfField('Recursos Especiais', montarRecursosEspeciais());
+  divider();
+  pdfField('Ferramentas Especiais', byId('f_ferramentas_especiais').value || 'N/A');
+  divider();
+  pdfField('Tempo de Deslocamento', byId('f_tempo_desloc').value || 'N/A');
+  divider();
+  pdfField('Tempo de Espera no Almoxarifado', byId('f_tempo_almox').value || 'N/A');
+  divider();
+  pdfField('Tempo de Espera na Central de Veículos', byId('f_tempo_veiculos').value || 'N/A');
+  divider();
+  pdfField('Área Organizada', document.querySelector('input[name="area_org"]:checked')?.value);
+  divider();
+  pdfField('Desvio de HH', document.querySelector('input[name="desvio_hh"]:checked')?.value);
+  divider();
+  // Status no PDF: individual ou geral
+  var _pChamados = chamadosSelecionados.slice();
+  var _pOutro = byId('f_chamado_outro').value.trim();
+  if (_pOutro) _pChamados.push(_pOutro);
+  if (_pChamados.length > 1) {
+    var _statusTxt = _pChamados.map(function(n){ return n + ': ' + (statusPorChamado[n] || '-'); }).join('\n');
+    pdfField('Status por Chamado', _statusTxt);
+  } else {
+    pdfField('Status da Execução', document.querySelector('input[name="status"]:checked')?.value);
+  }
+  y += 4;
+
+  return { doc: doc, y: y, marginX: marginX, contentW: contentW,
+           pdfField: pdfField, divider: divider, sectionHeader: sectionHeader };
+}
+
+// PDF Export — garante que cada arquivo não ultrapasse 2 MB
+// ─── EXPORTAR PDF DO FORMULÁRIO ─────────────────────────────────────────────
+function exportarFormularioPDF() {
+  if (!window.jspdf || !window.jspdf.jsPDF) {
+    alert('Não foi possível carregar o gerador de PDF. Verifique sua conexão e tente novamente.');
+    return;
+  }
+  var { jsPDF } = window.jspdf;
+  var chamado = byId('f_chamado').value || 'SN';
+  var otherFiles = attachedFiles.filter(function(f){ return !f.type.startsWith('image/'); });
+  var imgs = attachedFiles.filter(function(f){ return f.type.startsWith('image/'); });
+
+  var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  var ctx = construirTextoPDF(doc);
+  ctx.sectionHeader('S04', 'Evidências da Atividade');
+  if (otherFiles.length > 0) {
+    ctx.pdfField('Outros Arquivos Anexados',
+      otherFiles.map(function(f){ return f.name + ' (' + formatBytes(f.size) + ')'; }).join('\n'));
+    if (imgs.length > 0) ctx.divider();
+  }
+  if (imgs.length === 0) {
+    ctx.pdfField('Imagens', 'Nenhuma imagem anexada');
+  } else {
+    ctx.pdfField('Imagens Anexadas', imgs.length + ' imagem(ns) — baixar PDF de Evidências');
+  }
+  doc.save('Formulario_RDO_' + chamado + '.pdf');
+}
+
+// ─── EXPORTAR PDF DE EVIDÊNCIAS ──────────────────────────────────────────────
+function exportarEvidenciasPDF() {
+  if (!window.jspdf || !window.jspdf.jsPDF) {
+    alert('Não foi possível carregar o gerador de PDF. Verifique sua conexão e tente novamente.');
+    return;
+  }
+  var imgs = attachedFiles.filter(function(f){ return f.type.startsWith('image/'); });
+  if (imgs.length === 0) {
+    alert('Nenhuma imagem anexada para exportar.');
+    return;
+  }
+
+  var { jsPDF } = window.jspdf;
+  var chamado = byId('f_chamado').value || 'SN';
+  var pageWidth = 210;
+  var marginX = 14;
+  var PDF_MAX_BYTES = 2 * 1024 * 1024;
+
+  Promise.all(imgs.map(function(f){ return lerImagemParaPDF(f); }))
+    .then(function(images) {
+      var maxW = 160, maxH = 110;
+      var partNum = 1;
+
+      function criarParteFotos(startIdx) {
+        var docFoto = new jsPDF({ unit: 'mm', format: 'a4' });
+
+        function addHeader() {
+          docFoto.setFillColor(15, 37, 68);
+          docFoto.rect(0, 0, pageWidth, 14, 'F');
+          docFoto.setTextColor(255, 255, 255);
+          docFoto.setFont('helvetica', 'bold');
+          docFoto.setFontSize(11);
+          docFoto.text('EVIDÊNCIAS FOTOGRÁFICAS — ' + chamado + (partNum > 1 ? ' (Parte ' + partNum + ')' : ''), marginX, 9.5);
+          docFoto.setTextColor(28, 43, 58);
+        }
+
+        addHeader();
+        var yImg = 22;
+        var idx = startIdx;
+
+        while (idx < images.length) {
+          var img = images[idx];
+          var ratio = (img.w && img.h) ? img.w / img.h : (maxW / maxH);
+          var drawW = maxW, drawH = maxW / ratio;
+          if (drawH > maxH) { drawH = maxH; drawW = maxH * ratio; }
+          if (yImg + drawH + 9 > 285) { docFoto.addPage(); yImg = 16; }
+
+          docFoto.addImage(img.data, 'JPEG', marginX, yImg, drawW, drawH);
+
+          // Verifica tamanho após adicionar imagem
+          var b64 = (docFoto.output('datauristring').split(',')[1] || '');
+          var tamanho = Math.round(b64.length * 0.75);
+
+          if (tamanho > PDF_MAX_BYTES && idx > startIdx) {
+            // Passou de 2MB — recria sem essa imagem e salva
+            docFoto = new jsPDF({ unit: 'mm', format: 'a4' });
+            addHeader();
+            yImg = 22;
+            for (var ri = startIdx; ri < idx; ri++) {
+              var rim = images[ri];
+              var rrat = (rim.w && rim.h) ? rim.w / rim.h : (maxW / maxH);
+              var rdW = maxW, rdH = maxW / rrat;
+              if (rdH > maxH) { rdH = maxH; rdW = maxH * rrat; }
+              if (yImg + rdH + 9 > 285) { docFoto.addPage(); yImg = 16; }
+              docFoto.addImage(rim.data, 'JPEG', marginX, yImg, rdW, rdH);
+              yImg += rdH + 3;
+              docFoto.setFont('helvetica', 'normal');
+              docFoto.setFontSize(7.5);
+              docFoto.setTextColor(90, 117, 146);
+              docFoto.text((ri + 1) + '. ' + rim.name.substring(0, 70), marginX, yImg);
+              yImg += 9;
+            }
+            docFoto.save('Evidencias_' + chamado + '_Parte' + partNum + '.pdf');
+            partNum++;
+            setTimeout(function(si){ return function(){ criarParteFotos(si); }; }(idx), 800);
+            return;
+          }
+
+          yImg += drawH + 3;
+          docFoto.setFont('helvetica', 'normal');
+          docFoto.setFontSize(7.5);
+          docFoto.setTextColor(90, 117, 146);
+          docFoto.text((idx + 1) + '. ' + img.name.substring(0, 70), marginX, yImg);
+          yImg += 9;
+          idx++;
+        }
+
+        var sufixo = partNum > 1 ? '_Parte' + partNum : '';
+        docFoto.save('Evidencias_' + chamado + sufixo + '.pdf');
+      }
+
+      criarParteFotos(0);
+    })
+    .catch(function(err) {
+      console.error('Erro ao processar imagens:', err);
+      alert('Erro ao processar as imagens. Tente novamente.');
+    });
+}
+
+// ─── EXPORTAR PDF (botão legado — chama formulário) ──────────────────────────
+function exportPDF() {
+  exportarFormularioPDF();
+}
+
+
+// Initialize
+loadData();
+</script>
+
+
+<script>
+// ─── SERVICE WORKER — MODO OFFLINE ──────────────────────────────────────────
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./sw.js')
+      .then(function(reg) {
+        console.log('Service Worker registrado:', reg.scope);
+      })
+      .catch(function(err) {
+        // sw.js não encontrado ainda — silencia o erro, não afeta o formulário
+        console.warn('Service Worker não registrado (sw.js ausente ou erro):', err.message);
+      });
+  });
+}
+</script>
+</body></html>
